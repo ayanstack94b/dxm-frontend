@@ -1,9 +1,59 @@
 
 @import "tailwindcss";
 
+/* Global variables */
+
 :root {
   color-scheme: dark;
+
+  --background: #090909;
+  --foreground: #f5f5f5;
+  --text-secondary: #B8B3B5;
+
+  /* Brand colours */
+  --wine: #641B32;
+  --wine-light: #8C2045;
+  --cherry: #C2184B;
+
+  /* Main CTA */
+  --cta-gradient: linear-gradient(
+    105deg,
+    #641B32 0%,
+    #8C2045 52%,
+    #C2184B 100%
+  );
+
+  --cta-text: #FFFFFF;
+  --cta-radius: 8px;
+  --cta-padding-y: 14px;
+  --cta-padding-x: 28px;
+
+  --cta-shadow: 0 4px 18px rgba(100, 27, 50, 0.25);
+  --cta-shadow-hover: 0 6px 24px rgba(194, 24, 75, 0.30);
+
+  /* Shine */
+  --shine-width: 45%;
+  --shine-opacity: 0.9;
+  --shine-interval: 3s;
+
+  /* Secondary buttons */
+  --secondary-border: #8C2045;
+  --secondary-text: #FFFFFF;
+
+  /* Ghost buttons */
+  --ghost-background: #1A1A1A;
+  --ghost-hover: #252025;
+
+  /* Links */
+  --link-color: #D65A7C;
+  --link-hover: #F04475;
+
+  /* Shared styles */
+  --button-radius: 8px;
+  --button-transition: 250ms ease;
 }
+
+/* Global reset */
 
 * {
   box-sizing: border-box;
@@ -15,8 +65,8 @@ html {
 
 body {
   margin: 0;
-  background: #090909;
-  color: #f5f5f5;
+  background: var(--background);
+  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -28,3 +78,258 @@ a {
 button {
   cursor: pointer;
 }
+
+/* Main CTA */
+
+.main-cta {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: var(--cta-padding-y) var(--cta-padding-x);
+
+  background: var(--cta-gradient);
+  color: var(--cta-text);
+
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--cta-radius);
+
+  box-shadow: var(--cta-shadow);
+
+  overflow: hidden;
+  cursor: pointer;
+
+  transition:
+    transform var(--button-transition),
+    box-shadow var(--button-transition),
+    filter var(--button-transition);
+}
+
+.main-cta:hover {
+  box-shadow: var(--cta-shadow-hover);
+  filter: brightness(1.08);
+}
+
+.main-cta:active {
+  transform: scale(0.97);
+}
+
+/* Secondary button */
+
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: var(--cta-padding-y) var(--cta-padding-x);
+
+  background: transparent;
+  color: var(--secondary-text);
+
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  border: 1px solid var(--secondary-border);
+  border-radius: var(--button-radius);
+
+  transition:
+    background var(--button-transition),
+    border-color var(--button-transition),
+    color var(--button-transition);
+}
+
+.secondary-btn:hover {
+  background: rgba(100, 27, 50, 0.18);
+  border-color: var(--cherry);
+  color: #FFFFFF;
+}
+
+.secondary-btn:active {
+  transform: scale(0.97);
+}
+
+/* Ghost button */
+
+.ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: var(--cta-padding-y) var(--cta-padding-x);
+
+  background: var(--ghost-background);
+  color: #FFFFFF;
+
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  border: 1px solid #292326;
+  border-radius: var(--button-radius);
+
+  transition:
+    background var(--button-transition),
+    border-color var(--button-transition);
+}
+
+.ghost-btn:hover {
+  background: var(--ghost-hover);
+  border-color: #4A303A;
+}
+
+.ghost-btn:active {
+  transform: scale(0.97);
+}
+
+/* Text links */
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: var(--link-color);
+
+  font-weight: 500;
+  text-decoration: none;
+
+  transition:
+    color var(--button-transition),
+    opacity var(--button-transition);
+}
+
+.text-link:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Shine effect */
+
+.shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.shine::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+
+  top: -50%;
+  left: -70%;
+
+  width: var(--shine-width);
+  height: 200%;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 25%,
+    rgba(255, 255, 255, 0.65) 45%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.65) 55%,
+    rgba(255, 255, 255, 0.12) 75%,
+    transparent 100%
+  );
+
+  transform: skewX(-22deg);
+
+  animation: dxm-shine var(--shine-interval) ease-in-out infinite;
+}
+
+@keyframes dxm-shine {
+  0% {
+    left: -70%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: var(--shine-opacity);
+  }
+
+  30% {
+    left: 130%;
+    opacity: var(--shine-opacity);
+  }
+
+  31%,
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+
+/* Focus states */
+
+.main-cta:focus-visible,
+.secondary-btn:focus-visible,
+.ghost-btn:focus-visible,
+.text-link:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 4px;
+}
+
+/* Disabled states */
+
+.main-cta:disabled,
+.secondary-btn:disabled,
+.ghost-btn:disabled,
+.main-cta[aria-disabled="true"],
+.secondary-btn[aria-disabled="true"],
+.ghost-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .shine::after {
+    animation: none;
+    display: none;
+  }
+
+  .main-cta,
+  .secondary-btn,
+  .ghost-btn,
+  .text-link {
+    transition: none;
+  }
+
+  .main-cta:active,
+  .secondary-btn:active,
+  .ghost-btn:active {
+    transform: none;
+  }
+}
+/* =============================================== Uses Example =========================================== 
+
+Primary: main-cta shine
+Use for Get Tickets, Purchase.
+
+Secondary: secondary-btn
+Use for Explore Events, View All.
+
+Ghost: ghost-btn
+Use for Learn More, Cancel.
+
+Text link: text-link
+Use for Read More, Artist names.
+*/

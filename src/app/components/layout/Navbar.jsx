@@ -7,7 +7,6 @@ import {
     FiMenu,
     FiX,
     FiArrowUpRight,
-    FiXCircle,
 } from "react-icons/fi";
 
 const navigationLinks = [
@@ -112,7 +111,7 @@ export default function Navbar() {
 
                         <Link
                             href="#contact"
-                            className="group inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-black transition-colors duration-200 hover:bg-neutral-300"
+                            className="group main-cta shine inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-black transition-colors duration-200 hover:bg-neutral-300"
                         >
                             For Bands
 
@@ -226,7 +225,7 @@ export default function Navbar() {
                             href="#contact"
                             onClick={closeMenu}
                             tabIndex={menuOpen ? 0 : -1}
-                            className="flex items-center justify-between rounded-md bg-black px-5 py-4 font-bold text-white"
+                            className="flex main-cta shine items-center justify-between rounded-md bg-black px-5 py-4 font-bold text-white"
                         >
                             For Bands
 
